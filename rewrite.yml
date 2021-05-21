@@ -1,5 +1,16 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
+name: org.acme.quarkus.test
+displayName: Uprgade Quarkus project from 1.11 to 1.12
+description: Uprgade Quarkus project from 1.11 to 1.12.
+recipeList:
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+      groupId: io.quarkus
+      artifactId: quarkus-universe-bom
+      newVersion: 1.12
+      trustParent: true
+---
+type: specs.openrewrite.org/v1beta/recipe
 name: org.acme.QuarkusUpgrade
 recipeList:
   - org.openrewrite.java.quarkus.Quarkus1_11to1_12Migration
