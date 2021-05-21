@@ -69,7 +69,6 @@
         <dependency>
             <groupId>io.quarkus.resteasy.reactive</groupId>
             <artifactId>resteasy-reactive-common</artifactId>
-            <version>1.13.4.Final</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
