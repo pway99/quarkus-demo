@@ -1,0 +1,5 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.acme.QuarkusUpgrade
+recipeList:
+  - org.openrewrite.java.quarkus.Quarkus1_11to1_12Migration
