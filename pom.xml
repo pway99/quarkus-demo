@@ -95,7 +95,7 @@
                 <artifactId>rewrite-maven-plugin</artifactId>
                 <version>${rewrite-plugin.version}</version>
                 <configuration>
-
+                    <activeRecipes>${rewrite-active-recipe}</activeRecipes>
                 </configuration>
                 <dependencies>
                     <dependency>
