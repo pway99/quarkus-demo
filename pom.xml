@@ -115,6 +115,25 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.openrewrite.maven</groupId>
+                <artifactId>rewrite-maven-plugin</artifactId>
+                <version>4.3.0</version>
+                <configuration>
+                    <activeRecipes>
+                        <!-- <recipe>org.openrewrite.java.format.AutoFormat</recipe> -->
+                        <!-- <recipe>org.openrewrite.java.quarkus.Quarkus1to1_13Migration</recipe> -->
+                        <!-- <recipe>org.openrewrite.java.quarkus.Quarkus1to2Migration</recipe> -->
+                    </activeRecipes>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.openrewrite.recipe</groupId>
+                        <artifactId>rewrite-quarkus</artifactId>
+                        <version>0.1.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
     <profiles>
@@ -156,4 +175,19 @@
             </properties>
         </profile>
     </profiles>
+
+    <repositories>
+        <repository>
+            <!-- for consuming upstream openrewrite snapshot artifacts from ossrh during development -->
+            <id>ossrh-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
 </project>
