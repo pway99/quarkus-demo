@@ -21,7 +21,7 @@
 
         <rewrite-plugin.version>4.3.1-SNAPSHOT</rewrite-plugin.version>
         <rewrite-quarkus.version>0.1.0-SNAPSHOT</rewrite-quarkus.version>
-        <rewrite-active-recipe>org.openrewrite.java.quarkus.Quarkus1to1_13Migration</rewrite-active-recipe>
+        <rewrite-active-recipe>org.acme.quarkus.test</rewrite-active-recipe>
     </properties>
     <dependencyManagement>
         <dependencies>
