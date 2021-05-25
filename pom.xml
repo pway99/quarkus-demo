@@ -56,6 +56,12 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-mutiny</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-grpc</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy-mutiny</artifactId>
@@ -93,9 +99,11 @@
                 <artifactId>rewrite-maven-plugin</artifactId>
                 <version>${rewrite-plugin.version}</version>
                 <configuration>
-                    <!-- <recipe>org.openrewrite.java.format.AutoFormat</recipe> -->
-                    <!-- <recipe>org.openrewrite.java.quarkus.Quarkus1to1_13Migration</recipe> -->
-                    <!-- <recipe>org.openrewrite.java.quarkus.Quarkus1to2Migration</recipe> -->
+                    <activeRecipes>
+                        <!-- <recipe>org.openrewrite.java.format.AutoFormat</recipe> -->
+                        <!-- <recipe>org.openrewrite.java.quarkus.Quarkus1to1_13Migration</recipe> -->
+                        <recipe>org.openrewrite.java.quarkus.Quarkus1to2Migration</recipe>
+                    </activeRecipes>
                 </configuration>
                 <dependencies>
                     <dependency>
