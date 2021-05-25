@@ -2,6 +2,7 @@ package org.acme.factor.service;
 
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
+import io.smallrye.mutiny.groups.MultiCollect;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.time.Duration;
@@ -29,10 +30,8 @@ public class FactorService {
     public Uni<List<String>> collectItems(int count, String name) {
         Multi<String> multi = greetings(count, name);
         Uni<List<String>> uni = multi.collectItems().asList();
-        Executor e = new Executor() {
-            @Override
-            public void execute(Runnable command) {
-            }
+        Executor e = command -> {
+            System.out.print("something");
         };
         multi.subscribeOn(e);
         uni.subscribeOn(e);
@@ -45,5 +44,10 @@ public class FactorService {
                 .transform().byFilteringItemsWith(u -> u.matches("bla"));
     }
 
+    public MultiCollect<Long> hotStreamGreetings(int count, String name) {
+        return Multi.createFrom().ticks().every(Duration.ofMillis(1))
+                .transform()
+                .toHotStream().collectItems();
+    }
 
 }

@@ -5,8 +5,7 @@ import io.quarkus.arc.config.ConfigProperties;
 import java.util.Optional;
 
 @ConfigProperties(prefix = "greeting")
-public class FactorConfiguration {
-
+public class MyConfiguration {
     public String message;
     public String suffix = "!";
     public String name;

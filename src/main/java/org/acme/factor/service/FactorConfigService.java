@@ -1,6 +1,6 @@
 package org.acme.factor.service;
 
-import org.acme.factor.FactorConfiguration;
+import org.acme.factor.MyConfiguration;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -8,12 +8,12 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class FactorConfigService {
     @Inject
-    FactorConfiguration factorConfiguration;
+    MyConfiguration myConfiguration;
 
     public String readConfig() {
-        String configMessage = factorConfiguration.message + " [" + factorConfiguration.name + "] \n";
-        if (factorConfiguration.prize.isPresent()) {
-          configMessage = configMessage.concat(" prize: " + factorConfiguration.prize.get());
+        String configMessage = myConfiguration.message + " [" + myConfiguration.name + "] \n";
+        if (myConfiguration.prize.isPresent()) {
+          configMessage = configMessage.concat(" prize: " + myConfiguration.prize.get());
         }
         return configMessage;
     }
