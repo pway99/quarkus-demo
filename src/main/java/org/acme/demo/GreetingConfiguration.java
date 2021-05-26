@@ -1,13 +1,12 @@
-package org.acme.factor;
+package org.acme.demo;
 
 import io.quarkus.arc.config.ConfigProperties;
 
 import java.util.Optional;
 
 @ConfigProperties(prefix = "greeting")
-public class MyConfiguration {
+public class GreetingConfiguration {
     public String message;
-    public String suffix = "!";
     public String name;
     public Optional<Integer> prize;
 }

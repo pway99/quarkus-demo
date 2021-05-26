@@ -1,4 +1,4 @@
-package org.acme.factor.service;
+package org.acme.demo.service;
 
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
@@ -11,10 +11,6 @@ import java.util.concurrent.Executor;
 
 @ApplicationScoped
 public class FactorService {
-    public String factorIt(String thing) {
-
-        return thing + " factored";
-    }
 
     public Uni<String> uniGreeting(String name) {
         return Uni.createFrom().item(name)

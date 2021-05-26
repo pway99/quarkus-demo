@@ -1,4 +1,4 @@
-package org.acme.factor;
+package org.acme.demo;
 
 import io.smallrye.common.annotation.Blocking;
 
@@ -7,5 +7,5 @@ import javax.ws.rs.core.Application;
 
 @ApplicationPath("/")
 @Blocking
-public class FactorApplication extends Application {
+public class AcmeDemoApplication extends Application {
 }

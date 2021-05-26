@@ -1,8 +1,8 @@
-package org.acme.factor.controller;
+package org.acme.demo.controller;
 
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
-import org.acme.factor.service.FactorService;
+import org.acme.demo.service.FactorService;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import org.jboss.resteasy.reactive.RestSseElementType;
 
