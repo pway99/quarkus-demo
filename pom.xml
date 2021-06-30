@@ -19,7 +19,8 @@
         <quarkus.platform.version>1.11.7.Final</quarkus.platform.version>
         <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
 
-        <rewrite-plugin.version>4.6.0</rewrite-plugin.version>
+        <!-- <rewrite-plugin.version>4.6.0</rewrite-plugin.version> -->
+        <rewrite-plugin.version>4.5.0</rewrite-plugin.version>
         <rewrite-quarkus.version>0.3.0-SNAPSHOT</rewrite-quarkus.version>
     </properties>
     <dependencyManagement>
