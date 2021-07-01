@@ -13,7 +13,7 @@ public class GreetingService {
     public String greetingMessage() {
         String message = greetingConfiguration.message + " [" + greetingConfiguration.name + "] \n";
         if (greetingConfiguration.prize.isPresent()) {
-          message = message.concat(" prize: " + greetingConfiguration.prize.get());
+            message = message.concat(" prize: " + greetingConfiguration.prize.get());
         }
         return message;
     }
