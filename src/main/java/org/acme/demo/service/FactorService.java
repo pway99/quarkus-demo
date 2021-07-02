@@ -15,7 +15,7 @@ public class FactorService {
     public static Uni<String> uniGreeting(String name) {
         return Uni.createFrom().item(name)
                 .onItem()
-                .transform(n -> String.format("Factor this %s", n));
+                .apply(n -> String.format("Factor this %s", n));
     }
 
     public static Multi<String> greetings(int count, String name) {
