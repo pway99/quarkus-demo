@@ -1,6 +1,8 @@
 package org.acme.demo.misc;
 
 import io.quarkus.qute.Template;
+import io.quarkus.qute.TemplateInstance;
+import io.quarkus.qute.api.CheckedTemplate;
 import io.quarkus.qute.api.ResourcePath;
 import io.quarkus.scheduler.Scheduled;
 
@@ -14,4 +16,9 @@ public class ReportGenerator {
                 .data("samples", new Object())
                 .render();
     }
+}
+
+@CheckedTemplate
+class HelloTemplate {
+    public static native TemplateInstance hello(String name);
 }
