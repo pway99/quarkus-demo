@@ -110,6 +110,7 @@
                 <version>${rewrite-plugin.version}</version>
                 <configuration>
                     <activeRecipes>
+                        <!-- <recipe>org.acme.quarkus.test.reverse-api-usages</recipe> -->
                         <recipe>org.openrewrite.java.format.AutoFormat</recipe>
                         <!-- <recipe>org.openrewrite.java.quarkus.Quarkus1to1_13Migration</recipe> -->
                         <recipe>org.openrewrite.java.quarkus.quarkus2.Quarkus1to2Migration</recipe>

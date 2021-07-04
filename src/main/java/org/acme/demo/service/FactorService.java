@@ -21,7 +21,7 @@ public class FactorService {
     public static Multi<String> greetings(int count, String name) {
         return Multi.createFrom().ticks().every(Duration.ofMillis(1))
                 .onItem()
-                .transform(n -> String.format("hello %s - %d", name, n))
+                .apply(n -> String.format("hello %s - %d", name, n))
                 .transform()
                 .byTakingFirstItems(count);
     }
@@ -42,7 +42,7 @@ public class FactorService {
     public static Multi<String> test(int count, String name) {
         return Multi.createFrom().ticks().every(Duration.ofMillis(1))
                 .onItem()
-                .transform(n -> String.format("hello %s - %d", name, n))
+                .apply(n -> String.format("hello %s - %d", name, n))
                 .transform()
                 .byFilteringItemsWith(u -> u.matches("bla"));
     }

@@ -1,34 +1,94 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.acme.quarkus.test
-displayName: Uprgade Quarkus project from 1.11 to 1.12
-description: Uprgade Quarkus project from 1.11 to 1.12.
+name: org.acme.quarkus.test.reverse-api-usages
 recipeList:
+    ###
     - org.openrewrite.maven.UpgradeDependencyVersion:
           groupId: io.quarkus
           artifactId: quarkus-universe-bom
-          newVersion: 1.13.x
-    - org.openrewrite.java.ChangeMethodName:
-          methodPattern: io.smallrye.mutiny.Multi collectItems()
-          newMethodName: collect
-    - org.openrewrite.java.ChangeMethodName:
-          methodPattern: io.smallrye.mutiny.Multi groupItems()
-          newMethodName: group
-    - org.openrewrite.java.ChangeMethodName:
-          methodPattern: io.smallrye.mutiny.Multi transform()
-          newMethodName: select
-    - org.openrewrite.java.ChangeMethodName:
-          methodPattern: io.smallrye.mutiny.groups.MultiTransform byTakingFirstItems(..)
-          newMethodName: first
-    - org.openrewrite.java.ChangeMethodName:
-          methodPattern: io.smallrye.mutiny.groups.MultiTransform byFilteringItemsWith(..)
-          newMethodName: where
-    - org.openrewrite.java.ChangeMethodName:
-          methodPattern: io.smallrye.mutiny.Multi subscribeOn(java.util.concurrent.Executor)
-          newMethodName: runSubscriptionOn
-    - org.openrewrite.java.ChangeMethodName:
-          methodPattern: io.smallrye.mutiny.Uni subscribeOn(java.util.concurrent.Executor)
-          newMethodName: runSubscriptionOn
+          newVersion: 1.11.x
+    - org.openrewrite.maven.UpgradeDependencyVersion:
+          groupId: io.quarkus
+          artifactId: quarkus-bom
+          newVersion: 1.11.x
+    - org.openrewrite.maven.UpgradePluginVersion:
+          groupId: io.quarkus
+          artifactId: quarkus-maven-plugin
+          newVersion: 1.11.x
+    ###
     - org.openrewrite.properties.ChangePropertyKey:
-          oldPropertyKey: quarkus.dev.instrumentation
-          newPropertyKey: quarkus.live-reload.instrumentation
+          oldPropertyKey: quarkus.live-reload.instrumentation
+          newPropertyKey: quarkus.dev.instrumentation
+    - org.openrewrite.java.ChangeMethodName:
+          methodPattern: io.smallrye.mutiny.Multi collect()
+          newMethodName: collectItems
+    - org.openrewrite.java.ChangeMethodName:
+          methodPattern: io.smallrye.mutiny.Multi group()
+          newMethodName: groupItems
+    - org.openrewrite.java.ChangeMethodName:
+          methodPattern: io.smallrye.mutiny.Multi select()
+          newMethodName: transform
+    - org.openrewrite.java.ChangeMethodName:
+          methodPattern: io.smallrye.mutiny.groups.MultiTransform first(..)
+          newMethodName: byTakingFirstItems
+    - org.openrewrite.java.ChangeMethodName:
+          methodPattern: io.smallrye.mutiny.groups.MultiTransform where(..)
+          newMethodName: byFilteringItemsWith
+    - org.openrewrite.java.ChangeMethodName:
+          methodPattern: io.smallrye.mutiny.Multi runSubscriptionOn(java.util.concurrent.Executor)
+          newMethodName: subscribeOn
+    - org.openrewrite.java.ChangeMethodName:
+          methodPattern: io.smallrye.mutiny.Uni runSubscriptionOn(java.util.concurrent.Executor)
+          newMethodName: subscribeOn
+    - org.openrewrite.java.ChangeMethodName:
+          methodPattern: io.smallrye.mutiny.groups.UniOnFailure apply(java.util.function.Function)
+          newMethodName: apply
+    - org.openrewrite.java.ChangeMethodName:
+          methodPattern: io.smallrye.mutiny.groups.UniOnItem transform(java.util.function.Function)
+          newMethodName: apply
+    - org.openrewrite.java.ChangeMethodName:
+          methodPattern: io.smallrye.mutiny.groups.UniOnItemOrFailure transform(java.util.function.BiFunction)
+          newMethodName: apply
+    - org.openrewrite.java.ChangeMethodName:
+          methodPattern: io.smallrye.mutiny.groups.UniOnNotNull transform(java.util.function.Function)
+          newMethodName: apply
+    - org.openrewrite.java.ChangeMethodName:
+          methodPattern: io.smallrye.mutiny.groups.MultiOnFailure transform(java.util.function.Function)
+          newMethodName: apply
+    - org.openrewrite.java.ChangeMethodName:
+          methodPattern: io.smallrye.mutiny.groups.MultiOnItem transform(java.util.function.Function)
+          newMethodName: apply
+    ###
+    - org.openrewrite.properties.ChangePropertyKey:
+          oldPropertyKey: smallrye.jwt.sign.key.location
+          newPropertyKey: smallrye.jwt.sign.key-location
+    - org.openrewrite.properties.ChangePropertyKey:
+          oldPropertyKey: smallrye.jwt.encrypt.key.location
+          newPropertyKey: smallrye.jwt.encrypt.key-location
+    - org.openrewrite.properties.ChangePropertyKey:
+          oldPropertyKey: quarkus.neo4j.pool.metrics.enabled
+          newPropertyKey: quarkus.neo4j.pool.metrics-enabled
+    - org.openrewrite.properties.ChangePropertyValue:
+          propertyKey: quarkus.quartz.start-mode
+          newValue: true
+    - org.openrewrite.properties.ChangePropertyKey:
+          oldPropertyKey: quarkus.quartz.start-mode
+          newPropertyKey: quarkus.quartz.force-start
+    - org.openrewrite.properties.ChangePropertyValue:
+          propertyKey: quarkus.quartz.store-type
+          oldValue: jdbc-cmt
+          newValue: db
+    ###
+    - org.openrewrite.java.ChangeType:
+          oldFullyQualifiedTypeName: io.quarkus.qute.CheckedTemplate
+          newFullyQualifiedTypeName: io.quarkus.qute.api.CheckedTemplate
+    - org.openrewrite.java.ChangeType:
+          oldFullyQualifiedTypeName: io.quarkus.qute.Location
+          newFullyQualifiedTypeName: io.quarkus.qute.api.ResourcePath
+    - org.openrewrite.java.ChangeType:
+          oldFullyQualifiedTypeName: io.quarkus.mongodb.MongoClientName
+          newFullyQualifiedTypeName: io.quarkus.mongodb.runtime.MongoClientName
+    ###
+    - org.openrewrite.java.ChangeType:
+          oldFullyQualifiedTypeName: io.quarkus.grpc.GrpcClient
+          newFullyQualifiedTypeName: io.quarkus.grpc.runtime.annotations.GrpcService
