@@ -43,7 +43,7 @@ public class GreetingResource {
     @Produces(MediaType.APPLICATION_JSON)
     @RestSseElementType(MediaType.TEXT_PLAIN)
     @Path("/stream/{count}/{name}")
-    public Multi<String> greetingsAsStream(@PathParam int count,@PathParam String name) {
+    public Multi<String> greetingsAsStream(@PathParam int count, @PathParam String name) {
         return factorService.greetings(count, name);
     }
 
