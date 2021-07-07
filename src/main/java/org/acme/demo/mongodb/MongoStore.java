@@ -1,4 +1,4 @@
-package org.acme.demo.misc;
+package org.acme.demo.mongodb;
 
 import com.mongodb.client.MongoClient;
 import io.quarkus.mongodb.runtime.MongoClientName;
