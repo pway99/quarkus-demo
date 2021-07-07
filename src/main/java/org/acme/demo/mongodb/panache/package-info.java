@@ -1,1 +1,0 @@
-package org.acme.demo.mongodb.panache;

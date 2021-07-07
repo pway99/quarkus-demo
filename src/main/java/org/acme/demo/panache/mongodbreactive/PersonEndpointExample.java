@@ -1,4 +1,4 @@
-package org.acme.demo.mongodb.panache;
+package org.acme.demo.panache.mongodbreactive;
 
 import io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoEntityBase;
 import io.smallrye.mutiny.Multi;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @Path("/persons")
 @Consumes("application/json")
 @Produces("application/json")
-public class Resource {
+public class PersonEndpointExample {
 
     @GET
     public static Multi<ReactivePerson> streamPersons() {
@@ -44,6 +44,10 @@ public class Resource {
     @Path("/{id}")
     public static void update(@PathParam("id") String id, ReactivePerson person) {
         Uni<Void> p = person.update();
+    }
+
+    public static void persistOrUpdate(ReactivePerson person) {
+        Uni<Void> p = person.persistOrUpdate();
     }
 
     @DELETE

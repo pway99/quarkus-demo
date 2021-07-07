@@ -1,4 +1,4 @@
-package org.acme.demo.misc;
+package org.acme.demo.kafka;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
